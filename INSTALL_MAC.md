@@ -1,18 +1,86 @@
 # angular2-jasmine
 
+
+
+### Xcodeの最新化
+
+AppStoreからアップデート --> 6.4
+
+### Xcode commandline toolの最新化
+
+
+### Homebrew
+
+システムパッケージのみHomebrewで管理する
+アプリ別にバージョン依存がありそうなパッケージはインストールしない
+
+パッケージリスト更新
+```
+$ brew update
+$ brew doctor
+```
+
+
 ### Python をインストール
 
-Python.org 2.7.10
-https://www.python.org/downloads/release/python-2710/
 
-Windows x86-64 MSI installer
+pyenvとvirtualenvのみ brewでインストールする
+```
+$ brew install pyenv-virtualenv
+```
+環境変数を設定する
+```
+vim ~/.bash_profile
+```
+.bash_profile に追記
+```
+  :
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+```
+```
+$ source ~/.bash_profile
+```
 
-実行ファイル
-python-2.7.10.amd64.msi
 
+```
+グローバルのバージョンを2.7.10に指定する
+```
+$ pyenv install 2.7.10
+$ pyenv global system
+$ exec $SHELL -l
+```
+```
+$ pyenv versions
+system
+* 2.7.10 (set by /Users/g-hayakawa/.pyenv/version)
+2.7.6
+```
+
+ローカルのバージョンを2.7.6に指定する
+```
+$ cd ~/repos/angular2-jasmine
+$ pyenv install 2.7.6
+$ pyenv local 2.7.6
+$ exec $SHELL -l
+```
+```
+$ pyenv versions
+system
+2.7.10
+* 2.7.6 (set by /Users/g-hayakawa/repos/angular2-jasmine/.python-version)
+```
 
 
 ### nvmのインストール
+
+グローバルにインストールしたNode.jsはバージョン依存トラブルが起きるため削除する
+```
+$ brew uninstall node
+```
+
+
 
 ### Node.js、npmのインストール
 
@@ -116,13 +184,13 @@ karma-chrome-launcher@0.2.0 node_modules\karma-chrome-launcher
 └── which@1.1.1 (is-absolute@0.1.7)
 
 ```
-  
-  
+
+
 #### 4. Karma のインストール
 ```
 $ npm install --save-dev karma
 ```
- 
+
 
 #### 5. Karma を初期化して設定ファイルを作成
 
